@@ -18,7 +18,7 @@
     <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4">
             <div class="card">
-                <img src="{{ $product['img'] }}" class="card-img-top" style="width: 100px;">
+                <img src="{{ $product['img'] }}" class="card-img-top" style="width: 200px ;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product['name'] }}</h5>
                     <p class="card-text">{{ $product['description'] }}</p>
