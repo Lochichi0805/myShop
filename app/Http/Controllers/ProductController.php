@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductController extends Controller
 {
@@ -14,6 +15,14 @@ class ProductController extends Controller
      */
     public function index()
     {
+        if (Gate::allows('admin')) {
+            echo '系統管理者。';
+        }
+
+        if (Gate::denies('admin')) {
+            echo '非系統管理者！';
+        }
+        
         $products = Product::simplePaginate(1);
         $result = ['products' => $products];
         return view('products',$result);
