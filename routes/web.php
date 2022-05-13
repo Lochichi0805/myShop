@@ -18,6 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'ProductController@index');
+Route::get('/product/{id}', 'ProductController@detail');
+Route::get('/contract', 'ContractController@index');
 
 Auth::routes();
 

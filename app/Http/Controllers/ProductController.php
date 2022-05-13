@@ -14,83 +14,17 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        if (Gate::allows('admin')) {
-            echo '系統管理者。';
-        }
-
-        if (Gate::denies('admin')) {
-            echo '非系統管理者！';
-        }
-        
-        $products = Product::simplePaginate(1);
+    {        
+        $products = Product::simplePaginate(10);
         $result = ['products' => $products];
         return view('products',$result);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function detail($id)
     {
-        //
+        $products = Product::find($id);
+        $result = ['products' => $products];
+
+        return view('product', $result);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
-    }
 }
