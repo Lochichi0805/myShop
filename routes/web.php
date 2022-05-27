@@ -25,10 +25,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    // 購物車(需登入)
+    // TO DO: 先做存在資料庫，後續可改成存 session
+    Route::get('/cart', 'HomeController@cart');
+    Route::get('/removeCartItem/{productId}', 'HomeController@removeCartItem');
+    Route::post('/addCartItem/{productId}', 'HomeController@addCartItem');
+
 Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index');
     
-
     Route::get('/products', 'Admin\AdminController@products');
     Route::get('/createProduct', 'Admin\AdminController@createProduct');
     Route::post('/saveProduct', 'Admin\adminController@saveProduct');
