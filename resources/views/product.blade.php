@@ -6,7 +6,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item "><a href="/" class="test-decoration-none">首頁</a></li>
-                <li class="breadcrumb-item active" aria-current="page">商品</li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/products">商品</a></li>
             </ol>
         </nav>
     </div>

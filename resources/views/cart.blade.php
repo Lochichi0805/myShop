@@ -7,7 +7,7 @@
         <p class="h2">購物車</p>
     </div>
         @if (count($records))
-            <table class="table table-striped">
+            <table class="table table-striped" style="text-align:center;">
                 <thead>
                     <tr>
                     <th scope="col">照片</th>
@@ -20,11 +20,11 @@
                 <tbody>
                 @foreach ($records as $product)
                     <tr>
-                        <td><img src="{{ $product['img'] }}" width="100px" height="100px"></td>
-                        <td>{{ $product['name'] }}</td>
-                        <td>NT ${{ $product['price'] }}</td>
-                        <td>{{ $product['pivot']['count'] }}</td>
-                        <td>
+                        <td valign="middle"><img src="{{ $product['img'] }}" width="100px" height="100px"></td>
+                        <td valign="middle">{{ $product['name'] }}</td>
+                        <td valign="middle">NT ${{ $product['price'] }}</td>
+                        <td valign="middle">{{ $product['pivot']['count'] }}</td>
+                        <td valign="middle">
                             <a href="/removeCartItem/{{$product['pivot']['id']}}">
                                 <button class="btn btn-sm btn-danger">
                                     <i class='bx bx-trash'></i>
