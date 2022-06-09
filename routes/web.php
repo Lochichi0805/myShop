@@ -2,21 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+//不需登入
+Route::get('/', 'HomeController@index');
 Route::get('/products', 'ProductController@index');
 Route::get('/product/{id}', 'ProductController@detail');
 Route::get('/contract', 'ContractController@index');
@@ -30,10 +17,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('/cart', 'HomeController@cart');
     Route::get('/removeCartItem/{productId}', 'HomeController@removeCartItem');
     Route::post('/addCartItem/{productId}', 'HomeController@addCartItem');
+    //訂單
+    Route::get('/payment', 'HomeController@payment');
+    Route::post('/confirm', 'HomeController@confirm');
 
 Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index');
     
+    //商品
     Route::get('/products', 'Admin\AdminController@products');
     Route::get('/createProduct', 'Admin\AdminController@createProduct');
     Route::post('/saveProduct', 'Admin\adminController@saveProduct');
@@ -41,6 +32,7 @@ Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::get('/showUpdateProduct/{id}', 'Admin\AdminController@showUpdateProduct');
     Route::post('/updateProduct/{id}', 'Admin\AdminController@updateProduct');
     
+    //會員
     Route::get('/members', 'Admin\AdminController@members');
     Route::get('/createMember', 'Admin\AdminController@createMember');
     Route::post('/saveMember', 'Admin\adminController@saveMember');  

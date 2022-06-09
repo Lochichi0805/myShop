@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.app', ['count' => $cartConut])
 @section('content')
 <div class="container">
     <div class="page-bar" style="margin-top: 20px;">

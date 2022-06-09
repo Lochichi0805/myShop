@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.app', ['count' => $cartConut])
 @section('content')
 <div class="row g-0" style="width: 100%;">
     <div class="col-lg-8 mb-8 sm-12" style="-webkit-filter:brightness(.8);height: 600px;">

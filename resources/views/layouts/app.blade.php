@@ -43,15 +43,21 @@
                              <a class="nav-link" href="/products"><i class='bx bx-gift'>商品</i></a>
                         </li>
                         <li class="nav-item">
-                             <a class="nav-link" href="/cart"><i class='bx bx-cart bx-xs'>購物車</i></a>
-                        </li>
-                        <li class="nav-item">
                              <a class="nav-link" href="/contract"><i class='bx bx-phone' >聯絡我們</i></a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                    <li class="nav-item" style="margin-right: 5px;">
+                        <a class="nav-link a-cart" href="/cart">
+                            <i class='bx bx-cart bx-xs'></i>
+                        @guest
+                            @else
+                                <span class="badge rounded-pill badge-notification bg-danger">{{ $count }}</span>
+                        @endguest
+                        </a>
+                    </li>
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
