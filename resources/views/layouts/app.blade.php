@@ -86,7 +86,11 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    @can('admin')
+                                    <a class="dropdown-item" href="/admin">
+                                        管理者後台
+                                    </a>
+                                    @endcan
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
