@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('Admin/dashboard');
+        return view('admin/dashboard');
     }   
 
     public function products(Request $request)
@@ -25,12 +25,12 @@ class AdminController extends Controller
         $products = Product::all()->toArray();
         $result = ['records' => $products];
 
-        return view('Admin/products', $result);
+        return view('admin/products', $result);
     }  
 
     public function createProduct()
     {        
-        return view('Admin/createProduct');
+        return view('admin/createProduct');
     }
 
     public function saveProduct(Request $request)
@@ -59,7 +59,7 @@ class AdminController extends Controller
         $products = Product::find($id)->toArray();
         $result = ['records' => $products];
 
-        return view('/Admin/updateProduct', $result);
+        return view('/admin/updateProduct', $result);
     }
 
     public function updateProduct(Request $request, $id)
@@ -75,11 +75,11 @@ class AdminController extends Controller
         $members = User::all()->toArray();
         $result = ['records' => $members];
 
-        return view('/Admin/members', $result);
+        return view('/admin/members', $result);
     }
     public function createMember()
     {        
-        return view('Admin/createMember');
+        return view('admin/createMember');
     }
 
     public function saveMember(Request $request)
@@ -104,7 +104,7 @@ class AdminController extends Controller
         $members = User::find($id)->toArray();
         $result = ['records' => $members];
 
-        return view('/Admin/updateMember', $result);
+        return view('/admin/updateMember', $result);
     }
 
     public function updateMember(Request $request, $id)
