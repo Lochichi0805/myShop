@@ -78,6 +78,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/account">
+                                        會員中心
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -100,11 +103,13 @@
     </div>
 </body>
 
-<footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
+<!-- 
+    <footer class="bg-light text-center text-lg-start">
+
   <div class="text-center p-3" style="background-color:#0A2558;">
     <p style="color:white" class="">2022 © Shop</p>
   </div>
-  <!-- Copyright -->
+
 </footer>
+ -->
 </html>

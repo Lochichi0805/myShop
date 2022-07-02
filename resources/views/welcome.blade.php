@@ -13,23 +13,15 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://diz36nn4q02zr.cloudfront.net/webapi/images/o/400/400/Activity/16883/856281fc-eab3-4146-8641-dfa154c329b9/144139" class="d-block w-100" alt="image1" style="height: 600px;">
+      <img src="https://diz36nn4q02zr.cloudfront.net/webapi/images/o/400/400/Activity/16883/856281fc-eab3-4146-8641-dfa154c329b9/144139" class="d-block w-100" alt="image1" style="height: 700px;">
     </div>
     <div class="carousel-item">
-      <img src="https://static.popdaily.com.tw/u/202201/e14c1b8d-0b81-46e3-a77f-842c9300bc12.jpg" class="d-block w-100" alt="image2" style="height: 600px;">
+      <img src="https://static.popdaily.com.tw/u/202201/e14c1b8d-0b81-46e3-a77f-842c9300bc12.jpg" class="d-block w-100" alt="image2" style="height: 700px;">
     </div>
     <div class="carousel-item">
-      <img src="https://pinkoi-wp-blog.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/sites/7/2021/07/14102725/01%E9%A6%96%E5%9C%96%EF%BC%9A%E7%B4%99%E8%86%A0%E5%B8%B6%E6%87%89%E7%94%A8.jpg" class="d-block w-100" alt="image3" style="height: 600px;">
+      <img src="https://pinkoi-wp-blog.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/sites/7/2021/07/14102725/01%E9%A6%96%E5%9C%96%EF%BC%9A%E7%B4%99%E8%86%A0%E5%B8%B6%E6%87%89%E7%94%A8.jpg" class="d-block w-100" alt="image3" style="height: 700px;">
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </button>
 </div>
   </div>
 </div>

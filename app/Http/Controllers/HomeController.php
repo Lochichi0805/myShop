@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Http\Request;
 use App\Models\Cart;
-use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
+use App\Models\Order;
 use App\Traits\CartTrait;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -37,7 +38,14 @@ class HomeController extends Controller
 
         return view('welcome', $result);
     }
-
+    public function account()
+    {
+        $count = $this->getCartCount();
+        $result = [
+            'cartConut' => $count,
+        ];
+        return view('account', $result);
+    }
     public function cart()
     {
         $count = $this->getCartCount();
@@ -126,7 +134,6 @@ class HomeController extends Controller
             $sum += $cart[$key]['price']*$cart[$key]['pivot']['count'];
         }
 
-        $totalPrice = 0;
         $orderRecord = [
             'id' => 1,
             'orderStatus' => '已配送',
@@ -141,13 +148,9 @@ class HomeController extends Controller
             'payment' => $request['payment'],
             'paymentStatus' => 0,
             'address' => $request['address'],
-            'totalPrice' => $totalPrice,
+            'totalPrice' => $sum,
             'orderRecord' => json_encode($orderRecord)
         ];
-
-        // Order::create($order);
-        // User::find($userId)->cart()->delete();
-
 
         $order['product'] = $cart;
         $order['orderRecord'] = $orderRecord;
@@ -160,6 +163,79 @@ class HomeController extends Controller
         ];
         // dd($result);
         return view('confirm', $result);
+    }
+
+    public function saveOrder(Request $request)
+    {
+        $userId = Auth::user()->id;
+        $cart = User::find($userId)->cart()->get()->toArray();
+        $sum = 0;
+        foreach ($cart as $key => $value) {
+            $sum += $cart[$key]['price']*$cart[$key]['pivot']['count'];
+        }
+
+        $orderRecord = [[
+            'id' => 1,
+            'orderStatus' => '已配送',
+            'comment' => '您購買的商品已經寄出，請留意配送包裹'
+        ]];
+
+        $order = [
+            'userId' => $userId,
+            'product' => json_encode($cart),  //json_encode()將資料存成JSON格式
+            'name' => $request['name'],
+            'phone' => $request['phone'],
+            'payment' => $request['payment'],
+            'paymentStatus' => 0,
+            'address' => $request['address'],
+            'totalPrice' => $sum,
+            'orderRecord' => json_encode($orderRecord)
+        ];
+
+        Order::create($order);
+        Cart::where('userId', '=', $userId)->delete();
+
+        return Redirect::to("/orders")->with('orders', '訂單產製成功');
+
+    }
+    public function orders()
+    {
+        $userId = Auth::user()->id;
+        $orders = User::find($userId)->order()->get()->toArray();
+
+        $count = $this->getCartCount();
+        $result = [
+            'cartConut' => $count,
+            'records'=>$orders
+        ];
+
+        return view('orders', $result);
+    }
+    public function order($orderId)
+    {
+        $userId = Auth::user()->id;
+        $order = Order::find($orderId)->toArray();
+
+        if($order['userId'] != $userId){
+            return Redirect::to("/orders");
+        }
+
+        $count = $this->getCartCount();
+        
+        $result = [
+            'cartConut' => $count,
+            'userId' => $userId,
+            'products' => json_decode($order['product']),  //json_decode()將JSON格式讀出
+            'name' => $order['name'],
+            'orderRecords' => json_decode($order['orderRecord']),
+            'sum' => $order['totalPrice'],
+            'address' => $order['address'],
+            'phone' => $order['phone'],
+            'payment' => $order['payment'],
+        ];
+        return view('order', $result);
+
+
     }
     
 }

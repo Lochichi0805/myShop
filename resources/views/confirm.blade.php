@@ -18,6 +18,7 @@
         </div>
     </div>
     <form action="/saveOrder" method="post">
+        @csrf
         <div class="card">
             <div class="card-header">
                 購物明細
@@ -60,10 +61,21 @@
                 <p class="card-text">姓名：{{ $orders['name'] }}</p>
                 <p class="card-text">地址：{{ $orders['address'] }}</p>
                 <p class="card-text">電話：{{ $orders['phone'] }}</p>
-                <p class="card-text">付款方式：{{ $orders['payment'] }}</p>
+                <p class="card-text">付款方式：
+                    @if($orders['payment'] == 0)
+                        ATM轉帳
+                    @else
+                        其他
+                    @endif
+                </p>
             </div>
         </div>
+        <input type="hidden" id="name" name="name" value="{{ $orders['name'] }}">
+        <input type="hidden" id="address" name="address" value="{{ $orders['address'] }}">
+        <input type="hidden" id="phone" name="phone" value="{{ $orders['phone'] }}">
+        <input type="hidden" id="payment" name="payment" value="{{ $orders['payment'] }}">
         <button type="submit" class="btn btn-success" style="float: right; margin:5px;">確認，送出訂單</button>
     </form>
 </div>
+
 @endsection

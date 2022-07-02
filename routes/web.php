@@ -19,7 +19,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('/addCartItem/{productId}', 'HomeController@addCartItem');
     //訂單
     Route::get('/payment', 'HomeController@payment');
-    Route::post('/confirm', 'HomeController@confirm');
+    Route::post('/confirm', 'HomeController@confirm'); 
+    Route::post('/saveOrder', 'HomeController@saveOrder');
+    //訂單紀錄
+    Route::get('/orders', 'HomeController@orders');
+    Route::get('/order/{orderId}', 'HomeController@order');
+    //會員中心
+    Route::get('/account', 'HomeController@account');
 
 Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::get('/', 'Admin\AdminController@index');

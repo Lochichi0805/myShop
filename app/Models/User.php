@@ -54,4 +54,12 @@ class User extends Authenticatable
             'productId'
         )->withPivot('id', 'count');
     }
+
+    public function order()
+    {
+        return $this->hasMany(
+            Order::class,
+            'userId',
+        );
+    }
 }
