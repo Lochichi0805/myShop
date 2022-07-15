@@ -38,7 +38,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a id="orders" href="/admin/orders">
             <i class='bx bx-list-ul' ></i>
             <span class="links_name">訂單</span>
           </a>

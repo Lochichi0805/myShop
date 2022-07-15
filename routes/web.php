@@ -37,6 +37,9 @@ Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::get('/deleteProduct/{id}', 'Admin\AdminController@deleteProduct');
     Route::get('/showUpdateProduct/{id}', 'Admin\AdminController@showUpdateProduct');
     Route::post('/updateProduct/{id}', 'Admin\AdminController@updateProduct');
+
+    //訂單
+    Route::get('/orders', 'Admin\AdminController@orders');
     
     //會員
     Route::get('/members', 'Admin\AdminController@members');

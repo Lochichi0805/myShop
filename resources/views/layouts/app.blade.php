@@ -78,14 +78,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/account">
-                                        會員中心
-                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('登出') }}
                                     </a>
+                                    <a class="dropdown-item" href="/account">
+                                        會員中心
+                                    </a>
+                                    
                                     @can('admin')
                                     <a class="dropdown-item" href="/admin">
                                         管理者後台

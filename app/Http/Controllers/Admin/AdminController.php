@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,7 +18,22 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin/dashboard');
+        $productCount = Product::count();
+        $orderCount = Order::count();
+        $memberCount = User::count();
+        $totalPrice = Order::sum('totalPrice');
+        $latestFiveOrders = Order::latest()->take(5)->get();
+        
+        $result = [
+            'productCount' => $productCount,
+            'orderCount' => $orderCount,
+            'memberCount' => $memberCount,
+            'totalPrice' => $totalPrice,
+            'latestFiveOrders' => $latestFiveOrders
+
+        ];
+        
+        return view('admin/dashboard',$result);
     }   
 
     public function products(Request $request)
@@ -114,4 +130,13 @@ class AdminController extends Controller
 
         return Redirect::to('/admin/members');
     }
+
+    public function orders(Request $request)
+    {
+        $orders = Order::all()->toArray();
+        $result = ['records' => $orders];
+
+        return view('/admin/orders', $result);
+    } 
+
 }

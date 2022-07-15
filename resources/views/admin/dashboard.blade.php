@@ -16,56 +16,54 @@
       <div class="box">
         <div class="right-side">
           <div class="box-topic">總訂單</div>
-          <div class="number">6</div>
+          <div class="number">{{ $orderCount }}</div>
         </div>
         <i class='bx bx-cart-alt cart'></i>
       </div>
       <div class="box">
         <div class="right-side">
           <div class="box-topic">總會員</div>
-          <div class="number">6</div>
+          <div class="number">{{ $memberCount }}</div>
         </div>
         <i class='bx bxs-cart-add cart two' ></i>
       </div>
       <div class="box">
         <div class="right-side">
           <div class="box-topic">總商品</div>
-          <div class="number">5</div>
+          <div class="number">{{ $productCount }}</div>
         </div>
         <i class='bx bx-cart cart three' ></i>
       </div>
       <div class="box">
         <div class="right-side">
           <div class="box-topic">總金額</div>
-          <div class="number">$11,086</div>
+          <div class="number">${{ $totalPrice }}</div>
         </div>
         <i class='bx bxs-cart-download cart four' ></i>
       </div>
     </div>
     <div class="content-boxes">
       <div class="recent-content box">
-        <div class="title">最近的銷售</div>
+        <div class="title">最近的銷售</div>   
         <div class="content-details">
-          <ul class="details">
-            <li class="topic">日期</li>
-            <li><a href="#">2022/04/24</a></li>
-            <li><a href="#">2022/04/24</a></li>
-          </ul>
-          <ul class="details">
-          <li class="topic">客人</li>
-          <li><a href="#">Alex Doe</a></li>
-          <li><a href="#">David Mart</a></li>
-        </ul>
-        <ul class="details">
-          <li class="topic">商品</li>
-          <li><a href="#">Delivered</a></li>
-          <li><a href="#">Pending</a></li>
-        </ul>
-        <ul class="details">
-          <li class="topic">價格</li>
-          <li><a href="#">$204.98</a></li>
-          <li><a href="#">$24.55</a></li>
-        </ul>
+        <table class="table table-striped">
+          <thead>
+                <tr>
+                <th scope="col" data-sortable="true">日期</th>
+                <th scope="col" data-sortable="true">客人</th>
+                <th scope="col" data-sortable="true">價格</th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach ($latestFiveOrders as $order)
+                <tr>
+                  <td>{{ date('Y-m-d', strtotime($order['created_at'])) }}</td>
+                  <td>{{ $order['name'] }}</td>
+                  <td>{{ $order['totalPrice'] }}</td>
+                </tr>
+              @endforeach
+            </tbody>
+        </table>
         </div>
       </div>
     </div>
